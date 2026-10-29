@@ -11,14 +11,14 @@ async function render(){const ticket=++generation,box=document.getElementById('m
   const capabilities=await portalSession.call('inventory',{action:'capabilities'});
   if(ticket!==generation)return;
   if(!sameIdentity())throw Error('ログインが変わりました。もう一度ログインを確認してください。');
-  if(capabilities.manager!==true)throw Error('資材総数管理は社長・指定された資材管理担当者のみ利用できます。');
-  if(!capabilities.materialTotals)throw Error('総数管理の本番連携は準備中です。まだ登録・更新はできません。');
+  if(capabilities.manager!==true&&capabilities.materialTotalsRead!==true)throw Error('このログインでは資材総数一覧を利用できません。社員としてログインしてください。');
+  if(capabilities.manager===true&&!capabilities.materialTotals)throw Error('総数管理の本番連携は準備中です。まだ登録・更新はできません。');
   p.textContent='資材の総数を読み込んでいます…';
   const view=await client.load();
   if(ticket!==generation)return;
   if(!sameIdentity())throw Error('ログインが変わりました。もう一度ログインを確認してください。');
-  if(view.capabilities.manager!==true)throw Error('資材総数管理は社長・指定された資材管理担当者のみ利用できます。');
-  if(!view.capabilities.materialTotals)throw Error('総数管理の本番連携は準備中です。まだ登録・更新はできません。');
+  if(view.capabilities.manager!==true&&view.capabilities.materialTotalsRead!==true)throw Error('このログインでは資材総数一覧を利用できません。社員としてログインしてください。');
+  if(view.capabilities.manager===true&&!view.capabilities.materialTotals)throw Error('総数管理の本番連携は準備中です。まだ登録・更新はできません。');
   await MaterialTotals.mount(box,{view,client});
  }catch(error){if(ticket===generation){box.replaceChildren();const message=document.createElement('p');message.setAttribute('role','alert');message.textContent=error.message;const retry=document.createElement('button');retry.textContent='再読み込み';retry.onclick=render;box.append(message,retry)}}
 }

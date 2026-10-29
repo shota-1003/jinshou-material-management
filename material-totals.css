@@ -6,3 +6,4 @@ html,body{height:100%;height:100dvh;overflow:hidden}body{display:flex;flex-direc
 .material-totals .mt-baseline{flex:none;margin:2px 0 4px;padding:4px 8px;border-left:3px solid #b68d27;background:#fff6da;color:#624c1c;font-size:12px;line-height:1.5}.mt-baseline strong{margin-right:6px}
 
 .app-nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.app-nav #install-app{font:inherit;font-size:11px;padding:3px 7px;min-height:24px;color:#fff;border:1px solid #8bac9b;background:transparent;border-radius:4px}.app-nav a{white-space:nowrap;font-size:11px}
+.material-totals[data-mt-access=reader] .mt-block tr{cursor:default}.mt-reader-name{padding:0 4px;display:inline-block;max-width:72%;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}.mt-reader-category{font-size:9px;color:#587765;max-width:26%;display:inline-block;overflow:hidden;text-overflow:ellipsis;vertical-align:middle}.mt-readonly-note{margin-left:auto;color:#587765}
